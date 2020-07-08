@@ -1,0 +1,20 @@
+  savePDFDatei(event: any, produkt_instanz: number, produkt_nummer: number, pdfDateiart: string) {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.pdfDatei.dateiname = file.name;
+      try {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+         this.pdfDatei.pdfdatei = String(reader.result).split('base64,')[1];
+         if (!this.pdfDatei.pdfdatei) {
+          alert('Datei ist Null');
+          return;
+          }
+         this.save(produkt_instanz, produkt_nummer, pdfDateiart);
+        };
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  }
