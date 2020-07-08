@@ -1,0 +1,4 @@
+<div class="col-2">
+    <input style="display: none" type="file" name="pdfdatei" [ngModel]="pdfDatei.pdfdatei" (change)="onFileChange($event)" #fileInput />
+    <button mat-raised-button (click)="fileInput.click()">Datei auswählen</button>
+</div>
